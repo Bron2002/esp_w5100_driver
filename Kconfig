@@ -1,4 +1,41 @@
 menu "W5100 configurations"
+    menu "W5100 ethernet"
+        config W5100_SPI_CS
+            int "spi chip select pin (cs)"
+            default 13
+            range 0 31
+            help
+                Pin chip select for ethernet w5100 spi.
+
+        config W5100_SPI_MOSI
+            int "spi chip select pin (mosi)"
+            default 12
+            range 0 31
+            help
+                Pin master out for ethernet w5100 spi.
+
+        config W5100_SPI_MISO
+            int "spi chip select pin (miso)"
+            default 14
+            range 0 31
+            help
+                Pin master in for ethernet w5100 spi.
+
+        config W5100_SPI_SCK
+            int "spi chip select pin (sck)"
+            default 27
+            range 0 31
+            help
+                Pin clock for ethernet w5100 spi.
+
+        config W5100_SPI_HOST
+            int "spi host SPI1_HOST=0, SPI2_HOST=1, SPI3_HOST=2"
+            default 2
+            range 0 2
+            help
+                Num of spi host.
+    endmenu
+
     menu "W5100 debug options"
         config W5100_DEBUG_TX
             bool "Dump data sent (TX)"
