@@ -10,6 +10,7 @@
 #include "w5100_ll.h"
 
 #define GOT_IPV4 BIT0
+#define CONFIG_TEST_STATIC_IP
 
 struct
 {
@@ -113,9 +114,9 @@ void w5100_start()
 #ifdef CONFIG_TEST_STATIC_IP
 		.sip =
 		{
-			.net.ip.addr = ESP_IP4TOADDR(192, 168, 251, 42),
+			.net.ip.addr = ESP_IP4TOADDR(192, 168, 0, 2),
 			.net.netmask.addr = ESP_IP4TOADDR(255, 255, 255, 0),
-			.net.gw.addr = ESP_IP4TOADDR(192, 168, 251, 1),
+			.net.gw.addr = ESP_IP4TOADDR(192, 168, 0, 1),
 			.p_dns.addr = ESP_IP4TOADDR(1, 1, 1, 1),
 			.s_dns.addr = ESP_IP4TOADDR(8, 8, 8, 8),
 			.f_dns.addr = ESP_IP4TOADDR(8, 8, 4, 4),
