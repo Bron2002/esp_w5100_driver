@@ -1,0 +1,9 @@
+[submodule "components/w5100"]
+	path = components/w5100
+	url = https://github.com/Bron2002/w5100_esp
+[submodule "components/w5100/w5100_esp3"]
+	path = components/w5100/w5100_esp3
+	url = https://github.com/Bron2002/w5100_esp
+[submodule "components/w5100/w5100_esp32"]
+	path = components/w5100/w5100_esp32
+	url = https://github.com/Bron2002/w5100_esp
