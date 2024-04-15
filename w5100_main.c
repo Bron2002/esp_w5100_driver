@@ -10,7 +10,7 @@
 #include "w5100_ll.h"
 
 #define GOT_IPV4 BIT0
-#define CONFIG_TEST_STATIC_IP
+//#define CONFIG_TEST_STATIC_IP
 
 struct
 {
@@ -101,6 +101,7 @@ void deinit( void )
 void w5100_start()
 {
 	init();
+
 	eth_init( &( struct eth_ifconfig ){
 		.hostname = "w5100_esp32",
 		.w5100_cfg =
@@ -114,14 +115,16 @@ void w5100_start()
 #ifdef CONFIG_TEST_STATIC_IP
 		.sip =
 		{
-			.net.ip.addr = ESP_IP4TOADDR(192, 168, 0, 2),
+			.net.ip.addr = ESP_IP4TOADDR(193, 168, 30, 12),
 			.net.netmask.addr = ESP_IP4TOADDR(255, 255, 255, 0),
-			.net.gw.addr = ESP_IP4TOADDR(192, 168, 0, 1),
+			.net.gw.addr = ESP_IP4TOADDR(193, 168, 30, 1),
 			.p_dns.addr = ESP_IP4TOADDR(1, 1, 1, 1),
 			.s_dns.addr = ESP_IP4TOADDR(8, 8, 8, 8),
 			.f_dns.addr = ESP_IP4TOADDR(8, 8, 4, 4),
 		},
 #endif
 	} );
+        	ESP_LOGI( TAG, "Ethernet init" );
+
 	xEventGroupWaitBits( eth_ev, GOT_IPV4, pdFALSE, pdTRUE, portMAX_DELAY );
 }

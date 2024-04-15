@@ -36,18 +36,17 @@ void w5100_ll_hw_reset( void )
 
 void w5100_spi_init( void )
 {
-//	ESP_ERROR_CHECK( gpio_config( &( const gpio_config_t ) {
-//		.pin_bit_mask = BIT64( GPIO_NUM_26 ) | BIT64( GPIO_NUM_22 ),
-//		.mode = GPIO_MODE_OUTPUT } ) );
+
+	ESP_ERROR_CHECK( gpio_config(&(const gpio_config_t) {
+		.pin_bit_mask = BIT64( GPIO_NUM_12 ),
+		.mode = GPIO_MODE_OUTPUT } ) );
 	ESP_ERROR_CHECK( !( eth_mutex = xSemaphoreCreateMutex() ) );
 	ESP_ERROR_CHECK( spi_bus_add_device(
 		VSPI_HOST,
 		&( spi_device_interface_config_t ) {
 			.clock_speed_hz = 1000000,
 			.spics_io_num = CONFIG_W5100_SPI_CS,
-			.queue_size = 1,
-			.pre_cb = NULL,
-			.post_cb = NULL },
+			.queue_size = 1},
 		&w5100_spi_handle ) );
 	ESP_ERROR_CHECK( spi_device_acquire_bus( w5100_spi_handle, portMAX_DELAY ) );
 }
